@@ -13,9 +13,11 @@ ep_tables = html_soup.find_all('table', class_='wikiepisodetable')
 for table in ep_tables:
     headers = []
     rows = table.find_all('tr')
+    # Just the first one (headers)
     for header in table.find('tr').find_all('th'):
         headers.append(header.text)
 
+    # All but the first (the first is a collection of headers)
     for row in table.find_all('tr')[1:]:
         values = []
         for col in row.find_all(['th', 'td']):
